@@ -1,27 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
-public enum ObjectType
-{
-    SuperWall,
-    Wall,
-    Prop,
-    Bomb,
-    Enemy,
-    BombEffect
-}
-
-[System.Serializable]
-public class Type_Prefab
-{
-    public ObjectType type;
-    public GameObject prefab;
-}
 public class ObjectPool : MonoBehaviour
 {
+    /// <summary>
+    /// 物体类型和对应的对象池关系字典
+    /// </summary>
+    private Dictionary<ObjectType, List<GameObject>> dic = new Dictionary<ObjectType, List<GameObject>>();
     public static ObjectPool Instance;
-    public List<Type_Prefab> type_Prefabs = new List<Type_Prefab>();
+    private ManagerVars vars;
+    private void Awake()
+    {
+        Instance = this;
+        vars = ManagerVars.GetManagerVars();
+        Messenger.AddListener<ObjectType,GameObject>("addObjectPool",Add);
+    }
     /// <summary>
     /// 通过物体类型获取该预制体
     /// </summary>
@@ -29,25 +21,15 @@ public class ObjectPool : MonoBehaviour
     /// <returns></returns>
     private GameObject GetPreByType(ObjectType type)
     {
-        foreach (var item in type_Prefabs)
+        
+        foreach (var item in vars.typePrefabs)
         {
             if (item.type == type)
                 return item.prefab;
         }
         return null;
     }
-
-    /// <summary>
-    /// 物体类型和对应的对象池关系字典
-    /// </summary>
-    private Dictionary<ObjectType, List<GameObject>> dic =
-        new Dictionary<ObjectType, List<GameObject>>();
-
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    
     /// <summary>
     /// 通过物体类型从相对应的对象池中取东西
     /// </summary>
@@ -79,10 +61,7 @@ public class ObjectPool : MonoBehaviour
         temp.transform.rotation = Quaternion.identity;
         return temp;
     }
-    /// <summary>
-    /// 回收
-    /// </summary>
-    /// <param name="type"></param>
+
     public void Add(ObjectType type, GameObject go)
     {
         //判断该类型是否有对应的对象池以及对象池中不存在该物体
@@ -92,5 +71,6 @@ public class ObjectPool : MonoBehaviour
             dic[type].Add(go);
         }
         go.SetActive(false);
+        UnityEngine.Debug.Log("你好！我使用广播把"+type+"放回对象池了！");
     }
 }

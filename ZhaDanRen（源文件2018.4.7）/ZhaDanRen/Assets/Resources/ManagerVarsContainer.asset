@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e9ccee755742e8b6e38809303f7a89, type: 3}
+  m_Name: ManagerVarsContainer
+  m_EditorClassIdentifier: 
+  typePrefabs:
+  - type: 0
+    prefab: {fileID: 480559153384366891, guid: 0a1f7cfd9b05ce7478d1c534c23d9ff7, type: 3}
+  - type: 3
+    prefab: {fileID: 3359007776546648954, guid: 84f5b3702b3995f49b411e7ec4c4d150,
+      type: 3}
+  - type: 5
+    prefab: {fileID: 5571262026600259551, guid: 7edaea83a4950104b9cb7e810e5b4acf,
+      type: 3}
+  - type: 1
+    prefab: {fileID: 2050357417858172174, guid: de0336385e8aec848abf8846a75fb5db,
+      type: 3}
+  - type: 4
+    prefab: {fileID: 9179210768263513434, guid: ad967b20e33a1974eb7e3f13d8fa75ac,
+      type: 3}
+  - type: 2
+    prefab: {fileID: 8663727974238871165, guid: f25c1de9288d1e24aa53cffc1c5392f6,
+      type: 3}

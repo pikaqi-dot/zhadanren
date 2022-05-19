@@ -27,7 +27,8 @@ public class Bomb : MonoBehaviour
         Boom(Vector2.right);
         Boom(Vector2.down);
         Boom(Vector2.up);
-        ObjectPool.Instance.Add(ObjectType.Bomb, gameObject);
+        // ObjectPool.Instance.Add(ObjectType.Bomb, gameObject);
+        Messenger.Broadcast<ObjectType,GameObject>("addObjectPool", ObjectType.Bomb, gameObject);
     }
     private void Boom(Vector2 dir)
     {
